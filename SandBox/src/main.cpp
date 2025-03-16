@@ -23,18 +23,15 @@ public:
 		PRM_INFO("Application Destroyed");
 		m_window1->destroy();
 	}
-	virtual void onEvent(prm::Event& e) {
-		prm::EventDispatcher ed(e);
-		ed.Dispatch<prm::WindowCloseEvent>([](prm::Event& ev) {
-			PRM_TRACE("Window Down");
-			return true;
-		});
+	virtual bool onEvent(const prm::Ref<prm::Event>& e) {
+		return true;
 	}
 	virtual bool isRunning() {
 
 		return !m_window1->hasClosed();
 	}
 	prm::Ref<prm::Window> m_window1;
+
 };
 
 prm::Ref<prm::Application> prm::getClientApplication() {

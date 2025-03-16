@@ -8,7 +8,7 @@ namespace prm {
 	struct WindowOptions{
 		uint16_t width, height;
 		std::string windowTitle;
-		std::function<void(Event&)> handler;
+		std::function<bool(const Ref<Event>&)> handler;
 	};
 
 	class Window {
@@ -19,7 +19,7 @@ namespace prm {
 		virtual void update() = 0;
 		virtual void destroy() = 0;
 		virtual bool hasClosed() = 0;
-
+		virtual const WindowOptions& getOptions() = 0;
 		virtual ~Window() = default;
 	protected:
 		Window() = default;

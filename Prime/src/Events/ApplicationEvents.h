@@ -30,6 +30,14 @@ namespace prm {
 	{
 	public:
 		WindowCloseEvent() = default;
+		WindowCloseEvent(WindowCloseEvent& w) = default;
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "Window Closed";
+			return ss.str();
+		}
 
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)

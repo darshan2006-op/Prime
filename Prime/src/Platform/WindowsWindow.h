@@ -2,6 +2,11 @@
 struct GLFWwindow;
 
 namespace prm {
+	struct WindowData {
+		WindowOptions options;
+		EventDispatcher dispatcher;
+	};
+
 	class WindowsWindow: public Window {
 	public:
 		WindowsWindow(WindowOptions& options);
@@ -9,11 +14,12 @@ namespace prm {
 		virtual void update() override;
 		virtual void destroy() override;
 		virtual bool hasClosed() override;
+		virtual const WindowOptions& getOptions() override { return data.options; }
 		virtual ~WindowsWindow();
 	private:
 		GLFWwindow* m_navtiveWindow;
-		WindowOptions m_options;
 		static bool s_glfwInitFlag ;
 		bool m_hasDestroyed;
+		WindowData data;
 	};
 }
