@@ -1,22 +1,40 @@
 #include <iostream>
 #include "prime.h"
 
+using namespace std::placeholders;
+
 class MyApp : public prm::Application {
 public:
 	MyApp() = default;
 	virtual void onInit() {
 		PRM_INFO("Application Init");
+		prm::WindowOptions options;
+		options.width = 800;
+		options.height = 500;
+		options.windowTitle = "Engine Window";
+		options.handler = std::bind(&MyApp::onEvent, this, _1);
+		m_window1 = prm::Window::build(options);
+		m_window1->init();
 	}
 	virtual void onUpdate() {
-		PRM_INFO("Application Updated");
+		m_window1->update();
 	}
 	virtual void onDestroyed() {
 		PRM_INFO("Application Destroyed");
+		m_window1->destroy();
+	}
+	virtual void onEvent(prm::Event& e) {
+		prm::EventDispatcher ed(e);
+		ed.Dispatch<prm::WindowCloseEvent>([](prm::Event& ev) {
+			PRM_TRACE("Window Down");
+			return true;
+		});
 	}
 	virtual bool isRunning() {
-		static int i = 0;
-		return i++ < 10 ? true : false;
+
+		return !m_window1->hasClosed();
 	}
+	prm::Ref<prm::Window> m_window1;
 };
 
 prm::Ref<prm::Application> prm::getClientApplication() {
