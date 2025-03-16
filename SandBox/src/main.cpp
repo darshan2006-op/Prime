@@ -5,13 +5,13 @@ class MyApp : public prm::Application {
 public:
 	MyApp() = default;
 	virtual void onInit() {
-		std::cout << "application init" << std::endl;
+		PRM_INFO("Application Init");
 	}
 	virtual void onUpdate() {
-		std::cout << "application update" << std::endl;
+		PRM_INFO("Application Updated");
 	}
 	virtual void onDestroyed() {
-		std::cout << "application destroy" << std::endl;
+		PRM_INFO("Application Destroyed");
 	}
 	virtual bool isRunning() {
 		static int i = 0;

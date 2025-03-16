@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.29)
 project(Prime)
 include_directories(Prime src/)
-add_library(Prime src/Core/Core.h src/prime.h src/Core/Application.h src/Core/EntryPoint.cpp)
+include_directories(Prime ../deps/spdlog/include)
+file(GLOB_RECURSE SOURCE src/*.cpp src/*.h)
+add_library(Prime ${SOURCE})
