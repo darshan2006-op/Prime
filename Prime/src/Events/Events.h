@@ -66,33 +66,18 @@ namespace prm {
 		EventDispatcher():isDispatcherOnline(true), isDestroyed(false) {
 
 		}
-
 		using EventMap = std::queue<Ref<Event>>;
-
 		void init(const std::function<bool(const Ref<Event>&)>& function);
 		bool getIsDispatcherOn() const { return this->isDispatcherOnline; }
 		void stopDispatch() {
 			this->isDispatcherOnline = false;
 		};
-
 		void pushEvent(const Ref<Event>& e) {
 			std::lock_guard<std::mutex> guard(m_mut);
 			this->m_events.push(e);
 		}
-
 		const std::function<bool(const Ref<Event>&)>& getHandler() { return m_handler; }
 		EventMap& getEventBuffer() { return m_events; }
-		// F will be deduced by the compiler
-		//template<typename T, typename F>
-		//bool Dispatch(const F& func)
-		//{
-		//	if (m_Event.GetEventType() == T::GetStaticType())
-		//	 
-		//		m_Event.Handled |= func(static_cast<T&>(m_Event));
-		//		return true;
-		//	}
-		//	return false;
-		//}
 		void destroy();
 		virtual ~EventDispatcher();
 	private:

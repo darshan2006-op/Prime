@@ -13,6 +13,7 @@ namespace prm {
 		virtual void init() override;
 		virtual void update() override;
 		virtual void destroy() override;
+		virtual NativeWindowData getNativeWindowData();
 		virtual bool hasClosed() override;
 		virtual const WindowOptions& getOptions() override { return data.options; }
 		virtual ~WindowsWindow();

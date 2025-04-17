@@ -10,3 +10,6 @@
 #include <Events/KeyEvents.h>
 #include <Events/KeyCode.h>
 #include <Events/MouseCode.h>
+
+#include <Renderer/Context.h>
+#include <Renderer/Renderer.h>

@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "Log.h"
 #include "PlatformDetection.h"
-#include "Platform/WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 namespace prm {
     Ref<Window> prm::Window::build(WindowOptions& options)

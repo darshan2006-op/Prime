@@ -1,4 +1,4 @@
-#include "Platform/WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 #include "GLFW/glfw3.h"
 #include "Core/Log.h"
 #include "Events/ApplicationEvents.h"
@@ -93,6 +93,8 @@ namespace prm {
 				WindowData* options = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 				options->dispatcher.pushEvent(createRef<MouseScrolledEvent>(xOffset, yOffset));
 			});
+
+		
 	}
 	void WindowsWindow::update()
 	{
@@ -105,6 +107,13 @@ namespace prm {
 		glfwDestroyWindow(this->m_navtiveWindow);
 		glfwTerminate();
 		this->m_hasDestroyed = true;
+	}
+	NativeWindowData WindowsWindow::getNativeWindowData()
+	{
+		NativeWindowData data;
+		data.options = this->getOptions();
+		data.data = m_navtiveWindow;
+		return data;
 	}
 	bool WindowsWindow::hasClosed()
 	{
