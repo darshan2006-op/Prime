@@ -98,7 +98,6 @@ namespace prm {
 	}
 	void WindowsWindow::update()
 	{
-		glfwSwapBuffers(this->m_navtiveWindow);
 		glfwPollEvents();
 	}
 	void WindowsWindow::destroy()

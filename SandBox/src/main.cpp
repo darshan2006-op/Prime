@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "prime.h"
 #include "glad/glad.h"
 
@@ -20,19 +21,29 @@ public:
 		m_window1->init();
 		m_window1Context = prm::Context::create(m_window1);
 		m_window1Context->init();
+		m_window1Swapchain = prm::SwapChain::Create(m_window1);
+		m_window1Swapchain->init();
+		m_t = 0;
+		m_angle = 330.0 * (3.14/180);
+		m_radius = 1;
 	}
 	virtual void onUpdate() {
+
 		glClear(GL_COLOR_BUFFER_BIT);
 		glBegin(GL_TRIANGLES);
-		{
-			glColor3f(1.0f, 0.0f, 0.0f);
-			glVertex3f(-0.5f, -0.5, 0.0f);
-			glColor3f(1.0f, 0.0f, 1.0f);
-			glVertex3f( 0.5f, -0.5, 0.0f);
-			glColor3f(1.0f, 1.0f, 0.0f);
-			glVertex3f( 0.0f, 0.5, 0.0f);
-		}
+		glColor3f(1.0f, 0.0f, 0.0f);
+		glVertex3f(cos(m_radius * m_angle), m_radius * sin(m_angle), 0.0f);
+		glVertex3f(cos(m_radius * m_angle - (2 * 3.14 / 3)), m_radius * sin(m_angle - (2 * 3.14 / 3)), 0.0f);
+		glVertex3f(cos(m_radius * m_angle - (4 * 3.14 / 3)), m_radius * sin(m_angle - (4 * 3.14 / 3)), 0.0f);
 		glEnd();
+
+		if (m_t % 120 == 0) {
+			m_t = 0;
+			m_angle += 3.14 / 18;
+		}
+
+		m_t++;
+		m_window1Swapchain->swap();
 		m_window1->update();
 	}
 	virtual void onDestroyed() {
@@ -49,7 +60,10 @@ public:
 	}
 	prm::Ref<prm::Window> m_window1;
 	prm::Ref<prm::Context> m_window1Context;
-
+	prm::Ref<prm::SwapChain> m_window1Swapchain;
+	float m_angle;
+	float m_radius;
+	int m_t;
 };
 
 prm::Ref<prm::Application> prm::getClientApplication() {
