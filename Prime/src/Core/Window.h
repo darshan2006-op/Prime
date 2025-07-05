@@ -6,16 +6,10 @@
 
 
 namespace prm {
-	struct GraphicsOptions {
-		RenderingApi api;
-	};
-
 	struct WindowOptions{
 		uint16_t width, height;
 		std::string windowTitle;
 		std::function<bool(const Ref<Event>&)> handler;
-	
-		GraphicsOptions graphicsOptions;
 	};
 
 	struct NativeWindowData {

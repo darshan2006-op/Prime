@@ -8,7 +8,7 @@
 #include "GLFW/glfw3.h"
 
 namespace prm {
-	OpenGLContext::OpenGLContext(Ref<Window>& window): m_window(window)
+	OpenGLContext::OpenGLContext(Ref<Window>& window, ContextOptions options): Context(window, options)
 	{
 
 	}
@@ -20,6 +20,16 @@ namespace prm {
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			PRM_CORE_ERROR("Unable to initialize glad for the given window");
 		}
+		if (m_options.vsync) {
+			glfwSwapInterval(1);
+		}
 #endif
+	}
+	void OpenGLContext::createSwapChain()
+	{
+	}
+	void OpenGLContext::presentSwapChain()
+	{
+		glfwSwapBuffers((GLFWwindow*)m_window->getNativeWindowData().data);
 	}
 }

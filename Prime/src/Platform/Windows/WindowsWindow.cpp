@@ -94,7 +94,6 @@ namespace prm {
 				options->dispatcher.pushEvent(createRef<MouseScrolledEvent>(xOffset, yOffset));
 			});
 
-		
 	}
 	void WindowsWindow::update()
 	{

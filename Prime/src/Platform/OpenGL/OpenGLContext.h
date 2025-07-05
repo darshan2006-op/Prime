@@ -4,9 +4,10 @@
 namespace prm {
 	class OpenGLContext : public Context {
 	public:
-		OpenGLContext(Ref<Window>& window);
+		OpenGLContext(Ref<Window>& window, ContextOptions options);
 		virtual void init() override;
+		virtual void createSwapChain() override;
+		virtual void presentSwapChain() override;
 	protected:
-		Ref<Window> m_window;
 	};
 }

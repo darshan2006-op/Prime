@@ -7,7 +7,7 @@ namespace prm {
 	class Application {
 	public:
 		virtual void onInit() = 0;
-		virtual void onUpdate() = 0;
+		virtual void onUpdate(float dt) = 0;
 		virtual void onDestroyed() = 0;
 		virtual bool isRunning() = 0;
 		virtual ~Application() = default;
