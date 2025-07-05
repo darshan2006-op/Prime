@@ -8,6 +8,19 @@ namespace prm {
 		bool vsync = true;
 	};
 
+	enum class ClearParameter: uint8_t {
+		ColorBuffer,
+		DepthBuffer,
+		ColorAndDepthBuffer,
+	};
+
+	struct Color {
+		uint8_t red;
+		uint8_t green;
+		uint8_t blue;
+		uint8_t alpha;
+	};
+
 	class Context
 	{
 	public:
@@ -15,6 +28,8 @@ namespace prm {
 		virtual void init() = 0;
 		virtual void createSwapChain() = 0;
 		virtual void presentSwapChain() = 0;
+		virtual void clearScreen(ClearParameter param) = 0;
+		virtual void setClearColor(Color color) = 0;
 		virtual const Ref<Window>& getWindow() { return m_window; }
 		virtual const ContextOptions& getOptions() { return m_options; }
 		virtual ~Context() = default;

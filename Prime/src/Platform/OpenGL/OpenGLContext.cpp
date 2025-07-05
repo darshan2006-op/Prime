@@ -32,4 +32,29 @@ namespace prm {
 	{
 		glfwSwapBuffers((GLFWwindow*)m_window->getNativeWindowData().data);
 	}
+	void OpenGLContext::clearScreen(ClearParameter param)
+	{
+		switch (param)
+		{
+		case prm::ClearParameter::ColorBuffer:
+			glClear(GL_COLOR_BUFFER_BIT);
+			break;
+		case prm::ClearParameter::DepthBuffer:
+			glClear(GL_DEPTH_BUFFER_BIT);
+			break;
+		case prm::ClearParameter::ColorAndDepthBuffer:
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			break;
+		default:
+			break;
+		}
+	}
+	void OpenGLContext::setClearColor(Color color)
+	{
+		float red = color.red / 255.0f;
+		float green = color.green / 255.0f;
+		float blue = color.blue / 255.0f;
+		float alpha = color.alpha / 255.0f;
+		glClearColor(red, green, blue, alpha);
+	}
 }

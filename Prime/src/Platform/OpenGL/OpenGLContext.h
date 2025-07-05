@@ -8,6 +8,8 @@ namespace prm {
 		virtual void init() override;
 		virtual void createSwapChain() override;
 		virtual void presentSwapChain() override;
+		virtual void clearScreen(ClearParameter param) override;
+		virtual void setClearColor(Color color) override;
 	protected:
 	};
 }

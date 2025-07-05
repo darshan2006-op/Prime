@@ -29,12 +29,11 @@ public:
 		m_window1Context->init();
 	
 		m_window1Context->createSwapChain();
-		glClearColor(1.0f, 0.5f, 1.0f, 1.0f);
+		m_window1Context->setClearColor({100,100,150,255});
 	}
 
 	virtual void onUpdate(float dt) {
-		PRM_INFO("delta time: {}", dt);
-		glClear(GL_COLOR_BUFFER_BIT);
+		m_window1Context->clearScreen(prm::ClearParameter::ColorBuffer);
 		
 		m_window1Context->presentSwapChain();
 		m_window1->update();
