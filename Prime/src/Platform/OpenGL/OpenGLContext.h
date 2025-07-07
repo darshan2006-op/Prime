@@ -10,6 +10,8 @@ namespace prm {
 		virtual void presentSwapChain() override;
 		virtual void clearScreen(ClearParameter param) override;
 		virtual void setClearColor(Color color) override;
+		virtual void drawArrays(int first, int count) override;
+		virtual void drawElements(int indexCount) override;
 	protected:
 	};
 }

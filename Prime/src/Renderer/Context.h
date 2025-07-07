@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/Window.h"
+#include "Material.h"
 
 namespace prm {
 	struct ContextOptions {
@@ -25,6 +26,7 @@ namespace prm {
 	{
 	public:
 		static Ref<Context> create(Ref<Window>& window, ContextOptions options);
+
 		virtual void init() = 0;
 		virtual void createSwapChain() = 0;
 		virtual void presentSwapChain() = 0;
@@ -32,6 +34,9 @@ namespace prm {
 		virtual void setClearColor(Color color) = 0;
 		virtual const Ref<Window>& getWindow() { return m_window; }
 		virtual const ContextOptions& getOptions() { return m_options; }
+		virtual void drawArrays(int first, int count) = 0;
+		virtual void drawElements(int indexCount) = 0;
+
 		virtual ~Context() = default;
 	protected:
 		Ref<Window>& m_window;

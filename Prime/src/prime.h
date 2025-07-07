@@ -14,3 +14,6 @@
 #include <Renderer/Context.h>
 #include <Renderer/Renderer.h>
 #include <Renderer/Buffers.h>
+#include <Renderer/Shader.h>
+#include <Renderer/Pipeline.h>
+#include <Renderer/Mesh.h>

@@ -57,4 +57,12 @@ namespace prm {
 		float alpha = color.alpha / 255.0f;
 		glClearColor(red, green, blue, alpha);
 	}
+	void OpenGLContext::drawArrays(int first, int count)
+	{
+		glDrawArrays(GL_TRIANGLES, first, count);
+	}
+	void OpenGLContext::drawElements(int indexCount)
+	{
+		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+	}
 }

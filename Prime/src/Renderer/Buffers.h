@@ -19,7 +19,7 @@ namespace prm {
 		virtual void destroy() = 0;
 		virtual ~Buffer() = default;
 	protected:
-		const Ref<Context>& m_context;
+		const Ref<Context> m_context;
 		BufferType m_type;
 		Buffer(const Ref<Context>& context, BufferType type): m_context(context), m_type(type) {}
 	};
